@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_char_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ple- <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/03 14:25:11 by ple-              #+#    #+#             */
-/*   Updated: 2022/12/07 14:55:01 by ple-             ###   ########.fr       */
+/*   Created: 2022/12/07 12:11:01 by ple-              #+#    #+#             */
+/*   Updated: 2022/12/07 14:56:43 by ple-             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_print_char(int chr)
 {
-	va_list	args;
-	int		total_length;
+	unsigned char	c;
 
-	va_start(args, format);
-	total_length = ft_format(args, format);
-	va_end(args);
-	return (total_length);
+	c = (unsigned char) chr;
+	write (1, &c, 1);
+	return (1);
 }
 
+int	ft_print_str(char *str)
+{
+	int	total_length;
+
+	if (!str)
+	{
+		total_length = write (1, "(null)", 6);
+		return (total_length);
+	}
+	total_length = write (1, str, ft_strlen(str));
+	return (total_length);
+}
